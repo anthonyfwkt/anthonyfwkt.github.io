@@ -82,5 +82,22 @@ git clone https://github.com/anthonyfwkt/anthonyfwkt.github.io.git
 
 ## 添加 Giscus 评论功能
 
-参考: https://www.haoyep.com/posts/hugo-add-component/
+1. 添加giscus参照 1-3 步: https://www.haoyep.com/posts/hugo-add-component/
+
+2. 配置参照官方文档
+
+   创建一个 html 文件
+
+   ```bash
+   layouts/partials/comments.html
+   ```
+
+3. 并粘贴评论提供商(giscus)提供的代码
+
+4. 在配置中开启此项
+
+   ```yaml
+   params:
+     comments: true
+   ```
 
