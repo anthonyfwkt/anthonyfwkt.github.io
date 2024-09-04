@@ -2,7 +2,7 @@
 title: "测试"
 date: 2024-09-04T10:19:22+08:00
 draft: false
-categories: ["Blog"]
+categories: ["Blog","Test"]
 tags: ["Blog", "Hugo","Test"]
 summary: "测试"
 ---

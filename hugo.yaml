@@ -96,7 +96,7 @@ params:
     hiddenInSingle: true # hide on single page
 
   editPost:
-    URL: "https://github.com/<path_to_repo>/content" # 待修改
+    URL: "https://github.com/anthonyfwkt/anthonyfwkt.github.io/tree/main/content" 
     Text: "Suggest Changes" # edit text
     appendFilePath: true # to append file path to Edit link
 
@@ -113,7 +113,7 @@ params:
     keys: ["title", "permalink", "summary", "content"]
 menu:
   main:
-    - identifier: archives # 需做额外配置，具体参考下文
+    - identifier: archives # menu
       name: archives
       url: /archives/
       weight: 10
@@ -125,14 +125,15 @@ menu:
       name: tags
       url: /tags/
       weight: 30
-    - identifier: search # 需做额外配置，具体参考下文
+    - identifier: search # menu
       name: search
       url: /search/
       weight: 40
-    - identifier: example
-      name: example.org
-      url: https://example.org
+    - identifier: github #example
+      name: github
+      url: https://github.com/anthonyfwkt/anthonyfwkt.github.io
       weight: 50
+      
       
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
