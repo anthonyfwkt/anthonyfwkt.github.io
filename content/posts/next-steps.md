@@ -1,13 +1,11 @@
 ---
-title: "next-steps"
-date: 2024-09-03T10:19:22+08:00
+title: "博客后续操作"
+date: 2024-09-04T10:08:22+08:00
 draft: false
 categories: ["Blog"]
 tags: ["Blog", "Hugo"]
 summary: "个人博客简易教程"
 ---
-
-> Hugo+Github Pages+PaperMod搭建博客后续操作
 
 ## 下载hugo,配置环境变量
 
@@ -75,3 +73,5 @@ git clone https://github.com/anthonyfwkt/anthonyfwkt.github.io.git
    ```
 
 4. 等待`github`仓库`Actions`自动部署网站,`Actions`查看部署网站
+
+   部署会有延迟,过段时间查看就行
