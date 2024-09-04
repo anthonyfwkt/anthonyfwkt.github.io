@@ -2,6 +2,9 @@
 title: "next-steps"
 date: 2024-09-03T10:19:22+08:00
 draft: false
+categories: ["Blog"]
+tags: ["Blog", "Hugo"]
+summary: "个人博客简易教程"
 ---
 
 > Hugo+Github Pages+PaperMod搭建博客后续操作
@@ -71,4 +74,4 @@ git clone https://github.com/anthonyfwkt/anthonyfwkt.github.io.git
    git push
    ```
 
-4. 等待`github`仓库`Actions`自动部署网站
+4. 等待`github`仓库`Actions`自动部署网站,`Actions`查看部署网站
