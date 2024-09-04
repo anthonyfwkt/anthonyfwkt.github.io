@@ -138,6 +138,7 @@ menu:
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
 markup:
+  defaultMarkdownHandler: goldmark
   highlight:
     noClasses: false
     # anchorLineNos: true
@@ -152,6 +153,3 @@ outputs:
         - HTML
         - RSS
         - JSON # is necessary
-       
-markup:
-  defaultMarkdownHandler: goldmark
