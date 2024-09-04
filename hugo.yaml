@@ -38,11 +38,27 @@ params:
   UseHugoToc: true
   disableSpecial1stPost: false
   disableScrollToTop: false
-  comments: false
+  comments: true
   hidemeta: false
   hideSummary: false
-  showtoc: false
+  showtoc: true # menu
   tocopen: false
+  page:
+    comment:
+        giscus:
+            enable: true
+            repo: "anthonyfwkt/anthonyfwkt.github.io"
+            repo-id: "R_kgDOMsEKAQ"
+            category: "Announcements"
+            category-id: "DIC_kwDOMsEKAc4CiMCH"
+            mapping: "pathname"
+            strict: "0"
+            reactions-enabled: "1"
+            emit-metadata: "0"
+            input-position: "bottom"
+            theme: "preferred_color_scheme"
+            lang: ""
+            crossorigin: "anonymous"
 
   assets:
     # disableHLJS: true # to disable highlight.js
@@ -138,58 +154,13 @@ menu:
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
 markup:
-  defaultMarkdownHandler: goldmark
-  goldmark:
-    extensions:
-      cjk:
-        eastAsianLineBreaks: false
-        eastAsianLineBreaksStyle: simple
-        enable: false
-        escapedSpace: false
-      definitionList: true
-      footnote: true
-      linkify: true
-      linkifyProtocol: https
-      strikethrough: true
-      table: true
-      taskList: true
-      typographer:
-        apostrophe: '&rsquo;'
-        disable: false
-        ellipsis: '&hellip;'
-        emDash: '&mdash;'
-        enDash: '&ndash;'
-        leftAngleQuote: '&laquo;'
-        leftDoubleQuote: '&ldquo;'
-        leftSingleQuote: '&lsquo;'
-        rightAngleQuote: '&raquo;'
-        rightDoubleQuote: '&rdquo;'
-        rightSingleQuote: '&rsquo;'
-    parser:
-      attribute:
-        block: false
-        title: true
-      autoHeadingID: true
-      autoHeadingIDType: github
-      wrapStandAloneImageWithinParagraph: true
-    renderer:
-      hardWraps: false
-      unsafe: false
-      xhtml: false
   highlight:
-    anchorLineNos: false
-    codeFences: true
-    guessSyntax: false
-    hl_Lines: ""
-    hl_inline: false
-    lineAnchors: ""
-    lineNoStart: 1
-    lineNos: false
-    lineNumbersInTable: true
-    noClasses: true
-    noHl: false
-    style: monokai
-    tabWidth: 4
+    noClasses: false
+    # anchorLineNos: true
+    # codeFences: true
+    # guessSyntax: true
+    # lineNos: true
+    # style: monokai
     
 
 outputs:

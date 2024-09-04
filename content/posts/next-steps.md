@@ -75,3 +75,12 @@ git clone https://github.com/anthonyfwkt/anthonyfwkt.github.io.git
 4. 等待`github`仓库`Actions`自动部署网站,`Actions`查看部署网站
 
    部署会有延迟,过段时间查看就行
+
+## 博客主题设置
+
+参考文档: https://github.com/adityatelange/hugo-PaperMod/wiki/Features
+
+## 添加 Giscus 评论功能
+
+参考: https://www.haoyep.com/posts/hugo-add-component/
+
