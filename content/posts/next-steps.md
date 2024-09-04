@@ -1,5 +1,5 @@
 ---
-title: 'My First Post'
+title: "next steps"
 date: 2024-09-04T16:15:41+08:00
 draft: false
 categories: ["Blog"]
@@ -7,7 +7,7 @@ tags: ["Blog", "Hugo"]
 summary: "个人博客简易教程"
 ---
 
-## Hugo+Github Pages+PaperMod搭建博客后续操作
+> Hugo+Github Pages+PaperMod搭建博客后续操作
 
 ## 下载hugo,配置环境变量
 
