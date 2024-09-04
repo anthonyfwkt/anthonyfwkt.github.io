@@ -25,4 +25,4 @@ test
 
 8. image
 
-   ![image-20240904145238933](test.assets/image-20240904145238933.png)
+   ![image-20240904151300087](test.assets/image-20240904151300087.png)
