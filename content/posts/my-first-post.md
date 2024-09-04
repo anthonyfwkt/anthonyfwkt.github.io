@@ -1,7 +1,77 @@
-+++
-title = 'My First Post'
-date = 2024-09-03T16:15:41+08:00
-draft = true
+---
+title: 'My First Post'
+date: 2024-09-04T16:15:41+08:00
+draft: false
+categories: ["Blog"]
+tags: ["Blog", "Hugo"]
+summary: "个人博客简易教程"
+---
 
-+++
+## Hugo+Github Pages+PaperMod搭建博客后续操作
 
+## 下载hugo,配置环境变量
+
+1. 下载源码或者编译好的exe文件(windows-amd64.zip): https://github.com/gohugoio/hugo  
+2. 配置环境变量,`hugo version`查看版本
+
+## 安装git,设置github账户凭据
+
+> 要更改你的 Git 账户并连接到 GitHub，你需要按照以下步骤进行操作：
+>
+> 如果 Git 在尝试推送代码时仍然使用旧的凭据，你可能需要清除已保存的凭据。根据你使用的操作系统，步骤会有所不同：
+>
+> - **Windows:**
+>   1. 打开“控制面板”。
+>   2. 转到“用户账户” > “凭据管理器”。
+>   3. 在“Windows 凭据”或“普通凭据”下找到与 GitHub 相关的条目，并删除它们。
+>
+> 然后重新认证绑定设备: git - github账户凭据 - github
+
+1. 配置
+
+   设置用户名与邮箱（用户标识，必要）
+
+   ```bash
+   git config --global user.name "xxx"  #名称
+   git config --global user.email xxx@qq.com   #邮箱
+   ```
+
+2. 配置代理
+
+3. vpn工具->设置->参数设置->查看vpn的http监听端口
+
+   ```bash
+   git config --global http.proxy "127.0.0.1:vpn的http监听端口"  # 10809
+   git config --global https.proxy "127.0.0.1:vpn的http监听端口" #10809
+   ```
+
+
+## 克隆仓库到本地
+
+```bash
+git clone https://github.com/anthonyfwkt/anthonyfwkt.github.io.git
+```
+
+## 发布blog
+
+1. 新建blog,或者在 `posts`目录下新建`md`文件,编辑md文件完成后添加 `--- draft: false---`
+
+   ```bash
+   hugo new posts/my-first-post.md
+   ```
+
+2. hugo发布
+
+   ```bash
+   hugo
+   ```
+
+3. 更新仓库
+
+   ```bash
+   git add .
+   git commit -m "update posts"
+   git push
+   ```
+
+4. 等待`github`仓库`Actions`自动部署网站
