@@ -27,18 +27,16 @@ summary: "个人博客简易教程"
 >
 > 然后重新认证绑定设备: git - github账户凭据 - github
 
-1. 配置
+1. 下载安装: https://git-scm.com/ 下载安装无脑直接下一步(选择下默认的文本编辑器为notepad++即可)
 
-   设置用户名与邮箱（用户标识，必要）
+2. 设置用户名与邮箱（用户标识，必要）
 
    ```bash
    git config --global user.name "xxx"  #名称
    git config --global user.email xxx@qq.com   #邮箱
    ```
 
-2. 配置代理
-
-3. vpn工具->设置->参数设置->查看vpn的http监听端口
+3. 配置代理: vpn工具->设置->参数设置->查看vpn的http监听端口
 
    ```bash
    git config --global http.proxy "127.0.0.1:vpn的http监听端口"  # 10809
