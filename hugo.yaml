@@ -153,3 +153,5 @@ outputs:
         - RSS
         - JSON # is necessary
        
+markup:
+  defaultMarkdownHandler: goldmark

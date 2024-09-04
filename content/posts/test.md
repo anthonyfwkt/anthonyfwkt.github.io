@@ -10,9 +10,19 @@ summary: "测试"
 test
 
 1. front matter
+
 2. title
+
 3. date
+
 4. draft
+
 5. categories
+
 6. tags
+
 7. summary
+
+8. image
+
+   ![image-20240904145238933](test.assets/image-20240904145238933.png)
