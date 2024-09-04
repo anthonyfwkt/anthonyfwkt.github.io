@@ -1,10 +1,7 @@
 ---
-title: "next steps"
-date: 2024-09-04T16:15:41+08:00
+title: "next-steps"
+date: 2024-09-03T10:19:22+08:00
 draft: false
-categories: ["Blog"]
-tags: ["Blog", "Hugo"]
-summary: "个人博客简易教程"
 ---
 
 > Hugo+Github Pages+PaperMod搭建博客后续操作
@@ -52,7 +49,9 @@ git clone https://github.com/anthonyfwkt/anthonyfwkt.github.io.git
 
 ## 发布blog
 
-1. 新建blog,或者在 `posts`目录下新建`md`文件,编辑md文件完成后添加 `--- draft: false---`
+1. 新建blog,或者在 `posts`目录下新建`md`文件,编辑md文件完成后,将`draft`更新为`false`
+
+   > 注意,hugo命令生成的`md`文件 `front matter`不是 `Yaml`格式的,删掉,然后在第一行`---`,然后使用`Yaml`格式输入
 
    ```bash
    hugo new posts/my-first-post.md
