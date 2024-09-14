@@ -38,10 +38,10 @@ params:
   UseHugoToc: true
   disableSpecial1stPost: false
   disableScrollToTop: false
-  comments: true
+  comments: true # comments
   hidemeta: false
   hideSummary: false
-  showtoc: true # menu
+  showtoc: true # table of contents 
   tocopen: false
 
   assets:

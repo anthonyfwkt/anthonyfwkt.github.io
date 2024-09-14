@@ -2,8 +2,8 @@
 title: "network"
 date: 2024-09-04T16:00:00+08:00
 draft: false
-categories: ["network"]
-tags: ["network"]
+categories: ["Network"]
+tags: ["Network"]
 summary: network
 ---
 
