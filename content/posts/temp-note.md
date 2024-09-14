@@ -30,7 +30,7 @@ summary: temp note and economy
 3. 啥时候中信证券涨停了就见底了
 4. 社会结构
 
-![image-20240914103007416](temp-note.assets/image-20240914103007416.png)
+![image-20240914103007416](/temp-note.assets/image-20240914103007416.png)
 
 ## Explore
 
