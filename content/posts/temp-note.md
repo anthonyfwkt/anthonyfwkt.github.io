@@ -1,6 +1,6 @@
 ---
 title: "temp-note"
-date: 2024-09-14:00:00+08:00
+date: 2024-09-14T10:08:22+08:00
 draft: false
 categories: ["Note","Temp",Economy"]
 tags: ["Note","Temp","Economy"]
