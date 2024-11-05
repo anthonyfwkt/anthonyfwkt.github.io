@@ -240,6 +240,8 @@ summary: temp note and economy
 
 ## stock
 
+**关注华为发布会,提前买**
+
 关注六一路动向,
 
 月末最后一天集体跳水要减仓
@@ -247,6 +249,7 @@ summary: temp note and economy
 ```yaml
 热点: 
 低空,华为,鸿蒙
+
 特朗普,国产替代
 
 工业富联,
