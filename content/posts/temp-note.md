@@ -258,6 +258,8 @@ summary: temp note and economy
 
 ## stock
 
+> 15,30 前要减仓
+
 **关注华为发布会,提前买**
 
 军工看航展,以及歼-xx ,11月初布局军工
