@@ -258,7 +258,7 @@ summary: temp note and economy
 
 ## stock
 
-> 15,30 前要减仓
+> 15,30 前要减仓,要留钱抄底补仓
 
 **关注华为发布会,提前买**
 
