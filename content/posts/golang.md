@@ -9,6 +9,8 @@ summary: golang
 
 # golang
 
+> 一般用于服务器端 server side programming
+
 ## setting up vscode for golang on windows
 
 ### Install Go (Golang)
@@ -99,9 +101,52 @@ GOBIN: go语言生成可执行程序的路径,可以自己指定
 
 
 
-### Install VS Code
+### Install Goland
 
-1. Install the Go Extension in VS Code
+> https://jcshan709.github.io/jetbrains-activating-tutorial/
 
-   的
+**第 1 步 - 查找 JetBrains 许可证服务器**
+
+1. 访问[Censys 搜索](https://search.censys.io/)
+
+2. 输入以下文本并搜索：
+
+   ```bash
+   services.http.response.headers.location: account.jetbrains.com/fls-auth
+   ```
+
+3. 找到一个开放了 80 端口的站点，点击查看状态码是否为**302**，如果不是，再找一个。
+
+
+
+**第 2 步 - 激活你的 IDE**
+
+1. 启动您的 IDE 并`License Server`在激活页面上进行选择。
+2. 复制地址，包括协议（`http://`）（不包括端口），然后单击`Activate`
+3. 与 JetBrains 插件的方法相同`Code With Me`
+4. 若激活失败，请寻找其他服务器尝试。
+
+## Tutorial
+
+> https://golang.halfiisland.com/
+
+下面对本站的内容进行一个简单的介绍，以便各位可以按需阅读，部分页面是空白的代表着还未更新。
+
+- 语言入门：主要讲解关于 Go 语言本身的内容，偏理论。
+  - [语法基础](https://golang.halfiisland.com/essential/base/)：主要讲一些十分基础的语法，像是`if`，`for`之类的语法规则。
+  - [语法进阶](https://golang.halfiisland.com/essential/senior/)：讲一些 Go 独有的东西，关于模块，测试，协程等相关内容。
+  - [标准库](https://golang.halfiisland.com/essential/std/)：对 Go 自带的标准库的一个简单介绍，因为标准库的内容实在太过庞大所以随缘更新。
+  - [实现原理](https://golang.halfiisland.com/essential/impl/)：主要讲 Go 语言的一些内部设计原理，比如协程调度，内存管理，垃圾回收等。
+- 社区生态：主要讲解 Go 周边的生态，偏应用。
+  - [数据库](https://golang.halfiisland.com/community/database/)：通过 Go 操作主流的数据库。
+  - [微服务](https://golang.halfiisland.com/community/micro/)：介绍一些与 Go 有关的微服务工具。
+  - [第三方库](https://golang.halfiisland.com/community/pkgs/)：介绍一些由 Go 编写的第三方库，随缘更新，也可以直接在[依赖导航](https://golang.halfiisland.com/deb.html)里面查看。
+
+## Golang for Embedded Systems
+
+
+
+## Server side programming
+
+### Website
 
