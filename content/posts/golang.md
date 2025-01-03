@@ -142,6 +142,24 @@ GOBIN: go语言生成可执行程序的路径,可以自己指定
   - [微服务](https://golang.halfiisland.com/community/micro/)：介绍一些与 Go 有关的微服务工具。
   - [第三方库](https://golang.halfiisland.com/community/pkgs/)：介绍一些由 Go 编写的第三方库，随缘更新，也可以直接在[依赖导航](https://golang.halfiisland.com/deb.html)里面查看。
 
+### 字符串拼接
+
+```go
+func main() {
+   builder := strings.Builder{}
+   builder.WriteString("this is a string ")
+   builder.WriteString("that is a int")
+   fmt.Println(builder.String())
+}
+```
+
+### Golang泛型
+
+> 如果你经常要分别为不同的类型写完全相同逻辑的代码，那么使用泛型将是最合适的选择
+> 参考: https://www.cnblogs.com/insipid/p/17772581.html
+
+
+
 ## Golang for Embedded Systems
 
 
