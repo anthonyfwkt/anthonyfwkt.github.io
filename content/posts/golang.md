@@ -467,9 +467,7 @@ fyne 绝对是一个不错的选择！如果您想要高度定制的 UI 外观�
 
 ## fyne
 
-> **待解决: MSYS2的git 和  win的git 冲突**
->
-> 卸载go for windows,在MSYS2安装?
+> 安装时,MSYS2不安装git
 
 ### Get started
 
@@ -509,7 +507,7 @@ MSYS2 平台是推荐在 Windows 上使用的方法。操作如下：
 5. 如果第4步选择了 mingw-w64-x86_64-go ,您需要将 ~/Go/bin 添加到您的 $PATH，对于 MSYS2，您可以将以下命令粘贴到您的终端中：
 
    ```bash
-    $ echo "export PATH=\$PATH:~/Go/bin" >> ~/.bashrc
+   $ echo "export PATH=\$PATH:~/Go/bin" >> ~/.bashrc
    ```
 
 6. 为了使编译器在其他终端上运行，您需要设置 Windows %PATH% 变量来查找这些工具。转到“编辑系统环境变量”控制面板，点击“高级”，然后将“C:\msys64\mingw64\bin”添加到路径列表中。
@@ -520,7 +518,7 @@ MSYS2 平台是推荐在 Windows 上使用的方法。操作如下：
 
 运行以下命令并替换`MODULE_NAME`为您喜欢的模块名称（这应该在特定于您的应用程序的新文件夹中调用）。
 
-```
+```bash
 $ mkdir myapp
 $ cd myapp
 $ go mod init MODULE_NAME
@@ -528,10 +526,77 @@ $ go mod init MODULE_NAME
 
 现在您需要下载 Fyne 模块和辅助工具。这将使用以下命令完成
 
-```
+```bash
 $ go get fyne.io/fyne/v2@latest
 $ go install fyne.io/fyne/v2/cmd/fyne@latest
 ```
+
+### first app
+
+> app -> window -> widget set
+
+```go
+package main
+
+import (
+	"fyne.io/fyne/v2/app"
+	"fyne.io/fyne/v2/widget"
+)
+
+func main() {
+	a := app.New()
+	w := a.NewWindow("Hello World")
+
+	w.SetContent(widget.NewLabel("Hello World!"))
+	w.ShowAndRun()
+}
+```
+
+### Run Fyne Demo( Fyne 工具包)
+
+直接运行`demo app`
+
+```bash
+go run fyne.io/fyne/v2/cmd/fyne_demo@latest
+```
+
+安装Fyne 工具包到本地
+
+```bash
+go install fyne.io/fyne/v2/cmd/fyne@latest
+```
+
+工具使用: 打包`demo app` (**提示缺少git,待解决  MSYS安装?**)
+
+```bash
+fyne get fyne.io/fyne/v2/cmd/fyne_demo
+```
+
+### RunLoop
+
+要使 GUI 应用程序正常工作，它需要运行事件循环（有时称为运行循环）来处理用户交互和绘制事件。在 Fyne 中，这是使用`App.Run()` 或`Window.ShowAndRun()`函数启动的。其中一个必须在函数中的设置代码末尾调用`main()`。
+
+一个应用程序只能有一个运行循环，因此您只能`Run()`在代码中调用一次。第二次调用将导致错误。
+
+```go
+func main() {
+	myApp := app.New()
+	myWindow := myApp.NewWindow("Hello")
+	myWindow.SetContent(widget.NewLabel("Hello"))
+
+	myWindow.Show()
+	myApp.Run()
+	tidyUp()
+}
+
+func tidyUp() {
+	fmt.Println("Exited")
+}
+```
+
+对于桌面运行时，可以通过调用直接退出应用程序（移动应用程序不支持此功能） - 开发人员代码中通常不需要。一旦所有窗口都关闭，应用程序也会退出。另请参阅，在应用程序退出之前，不会调用`App.Quit()` 之后执行的函数。`Run()`
+
+### 更新GUI内容
 
 
 
