@@ -435,6 +435,12 @@ func FilterAnything(input []any, pred func(any) bool) []any {
 
 ## application
 
+### new project steps:
+
+1. 新建`github`远程仓库
+2. 本地`git clone URL`
+3. open folder as goland project
+
 ### Bash Script and Tools
 
 ### Golang for Embedded Systems
@@ -467,7 +473,9 @@ fyne 绝对是一个不错的选择！如果您想要高度定制的 UI 外观�
 
 ## fyne
 
-> 安装时,MSYS2不安装git
+> app (应用) -> window (窗口) -> widget (组件) -> content (内容)
+>
+> 新建-> 配置 -> 使用
 
 ### Get started
 
