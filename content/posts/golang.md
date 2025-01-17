@@ -7,6 +7,26 @@ tags: ["Note","golang","go"]
 summary: golang
 ---
 
+# Java
+
+spring,spring boot,spring cloud 这三个框架一起提供了一个强大的生态系统，适用于构建现代的 Java 应用，特别是以可扩展性、云原生特性和开发简便性为重点。
+
+**Spring** 是基础，它提供了核心框架。
+
+- 核心特性：依赖注入（DI）、面向切面编程（AOP）、事务管理等，帮助开发者构建各种 Java 应用。
+- 用于构建任何规模的应用，重点是灵活性和模块化。
+
+**Spring Boot** 基于 Spring 框架，提供了一种快速开发的方式。
+
+- 它**简化了 Spring 的配置**，提供了开箱即用的功能和约定优于配置（Convention over Configuration）的理念。
+- 重点是快速搭建、减少样板代码、内嵌服务器（如 Tomcat）以及易于测试和部署。
+- 本质上，Spring Boot 是对 Spring 的增强，**使开发微服务变得简单。**
+
+**Spring Cloud** 构建在 Spring Boot 和 Spring 之上，专注于微服务架构。
+
+- 提供工具和库，用于解决微服务系统的常见问题，如服务注册与发现、分布式配置、负载均衡、断路器、分布式消息等。
+- Spring Cloud 的模块需要依赖 Spring Boot 来运行，并继承 Spring 的核心特性。
+
 # golang
 
 > 一般用于服务器端 server side programming
@@ -349,6 +369,33 @@ sudo rm -rf /usr/local/go # 移除指定位置的go文件夹
   - [微服务](https://golang.halfiisland.com/community/micro/)：介绍一些与 Go 有关的微服务工具。
   - [第三方库](https://golang.halfiisland.com/community/pkgs/)：介绍一些由 Go 编写的第三方库，随缘更新，也可以直接在[依赖导航](https://golang.halfiisland.com/deb.html)里面查看。
 
+### go get 和 go install
+
+> 在早期版本（Go 1.17 之前）中，`go get` 同时支持安装和管理依赖。但自 Go 1.17 起，其功能被精简，只用于**管理依赖**。
+
+| **功能**          | **`go install`**                     | **`go get`**         |
+| ----------------- | ------------------------------------ | -------------------- |
+| **目标**          | 安装二进制工具                       | 管理依赖             |
+| **修改 `go.mod`** | 否                                   | 是                   |
+| **支持指定版本**  | 是                                   | 是                   |
+| **适用场景**      | 获取命令行工具或特定版本的可执行程序 | 管理项目依赖的库版本 |
+
+**`go install`**
+
+用于安装 Go 程序的可执行文件。自 Go 1.17 起，它支持指定特定版本安装。
+
+- **主要用途**：
+  - 从模块安装指定版本的命令行工具或程序。
+  - 直接将编译后的二进制文件放入 `$GOBIN` 或 `$GOPATH/bin` 目录。
+
+**`go get`**
+
+在早期版本（Go 1.17 之前）中，`go get` 同时支持安装和管理依赖。但自 Go 1.17 起，其功能被精简，只用于**管理依赖**。
+
+- **主要用途（现代 Go 中）**：
+  - 添加、更新或移除依赖。
+  - 修改 `go.mod` 和 `go.sum` 文件中记录的模块版本。
+
 ### 字符串拼接
 
 ```go
@@ -471,13 +518,21 @@ fyne 绝对是一个不错的选择！如果您想要高度定制的 UI 外观�
 
 
 
-## fyne
+# fyne
 
 > app (应用) -> window (窗口) -> widget (组件) -> content (内容)
 >
 > 新建-> 配置 -> 使用
+>
+> app.new
+>
+> window -> widget , label ,content
+>
+> window.show
+>
+> app.run
 
-### Get started
+## Get started
 
 https://docs.fyne.io/started/
 
@@ -606,7 +661,95 @@ func tidyUp() {
 
 ### 更新GUI内容
 
+```go
+package main
+
+import (
+	"time"
+
+	"fyne.io/fyne/v2/app"
+	"fyne.io/fyne/v2/widget"
+)
+
+func updateTime(clock *widget.Label) {
+	formatted := time.Now().Format("Time: 03:04:05")
+	clock.SetText(formatted)
+}
+
+func main() {
+	a := app.New()
+	w := a.NewWindow("Clock")
+
+	clock := widget.NewLabel("")
+	updateTime(clock)
+
+	w.SetContent(clock)
+	go func() {
+		for range time.Tick(time.Second) {
+			updateTime(clock)
+		}
+	}()
+	w.ShowAndRun()
+}
+```
+
+### 窗口处理
+
+window.SetMaster(): 设置主窗口,如果主窗口关闭,程序退出
+
+```go
+func main() {
+	a := app.New()
+	w := a.NewWindow("Hello World")
+
+	w.SetContent(widget.NewLabel("Hello World!"))
+	w.Show()
+
+	w2 := a.NewWindow("Larger")
+	w2.SetContent(widget.NewLabel("More content"))
+	w2.Resize(fyne.NewSize(100, 100))
+	w2.Show()
+
+	a.Run()
+}
+```
 
 
 
+### 打包
+
+```bash
+fyne package -os windows -icon myapp.png
+```
+
+可以在项目根目录下放置默认`Icon.png`文件,上面可省略为: `fyne package -os windows`
+
+当然，如果您愿意，您仍然可以使用标准 Go 工具运行您的应用程序。
+
+### 应用程序元数据
+
+> 自命令的 v2.1.0 版本起，`fyne`我们支持元数据文件，它允许您在存储库中存储有关应用程序的信息。此文件是可选的，但可以帮助您避免记住每个软件包和发布命令的特定构建参数
+
+基本配置
+
+`FyneApp.toml`该文件应以您运行命令的目录命名`fyne`（通常是`main`包）。文件内容如下：
+
+```toml
+Website = "https://example.com"
+
+[Details]
+Icon = "Icon.png"
+Name = "My App"
+ID = "com.example.app"
+Version = "1.0.0"
+Build = 1
+```
+
+该文件的顶部是元数据，当您将应用上传到[应用](https://apps.fyne.io/)列表页面时将使用它，因此它是可选的。
+
+该`Details`表包含有关您的应用程序的数据，这些数据会被其他应用商店和操作系统在发布过程中使用。
+
+如果找到该文件，该`fyne`工具将使用它，如果元数据存在，则不需要许多必需的命令参数。您仍然可以使用命令行参数覆盖这些值。
+
+## Explore Fyne
 

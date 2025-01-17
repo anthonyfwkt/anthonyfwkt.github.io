@@ -37,8 +37,8 @@ summary: "个人博客简易教程"
 3. 配置代理: vpn工具->设置->参数设置->查看vpn的http监听端口
 
    ```bash
-   git config --global http.proxy "127.0.0.1:vpn的http监听端口"  # 10809
-   git config --global https.proxy "127.0.0.1:vpn的http监听端口" #10809
+   git config --global http.proxy "127.0.0.1:vpn的http监听端口"  # 10808
+   git config --global https.proxy "127.0.0.1:vpn的https监听端口" #10808
    ```
 
 
