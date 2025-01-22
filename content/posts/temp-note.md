@@ -467,6 +467,8 @@ https://www.youtube.com/watch?v=yFNE_KpG5FU
 >
 > 年底买传媒: eg 天下秀
 >
+> 长期亏损不分红的不要买,博弈性太大
+>
 > 
 
 
