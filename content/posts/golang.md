@@ -7,30 +7,6 @@ tags: ["Note","golang","go"]
 summary: golang
 ---
 
-# Java
-
-> 把大象装进冰箱需要几步？答：三步，把冰箱门打开，大象塞进去，关上冰箱门。
->
-> 声明/实例化->配置->使用
-
-spring,spring boot,spring cloud 这三个框架一起提供了一个强大的生态系统，适用于构建现代的 Java 应用，特别是以可扩展性、云原生特性和开发简便性为重点。
-
-**Spring** 是基础，它提供了核心框架。
-
-- 核心特性：依赖注入（DI）、面向切面编程（AOP）、事务管理等，帮助开发者构建各种 Java 应用。
-- 用于构建任何规模的应用，重点是灵活性和模块化。
-
-**Spring Boot** 基于 Spring 框架，提供了一种快速开发的方式。
-
-- 它**简化了 Spring 的配置**，提供了开箱即用的功能和约定优于配置（Convention over Configuration）的理念。
-- 重点是快速搭建、减少样板代码、内嵌服务器（如 Tomcat）以及易于测试和部署。
-- 本质上，Spring Boot 是对 Spring 的增强，**使开发微服务变得简单。**
-
-**Spring Cloud** 构建在 Spring Boot 和 Spring 之上，专注于微服务架构。
-
-- 提供工具和库，用于解决微服务系统的常见问题，如服务注册与发现、分布式配置、负载均衡、断路器、分布式消息等。
-- Spring Cloud 的模块需要依赖 Spring Boot 来运行，并继承 Spring 的核心特性。
-
 # golang
 
 > 一般用于服务器端 server side programming

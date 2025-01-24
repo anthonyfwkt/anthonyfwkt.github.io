@@ -469,7 +469,7 @@ https://www.youtube.com/watch?v=yFNE_KpG5FU
 >
 > 长期亏损不分红的不要买,博弈性太大
 >
-> 
+> 工业富联,20以下随便进
 
 
 
