@@ -486,3 +486,19 @@ Hugo提供了在不修改`themes/PaperMod/layouts/partials/head.html`的情况�
 
 - 静态页面无需本地生成，更新时只需提交源码文件
 - 支持总访问量、访客数、文章阅读数统计
+
+
+
+## 升级 : Build failed because it uses a deprecated version of `actions/upload-artifact: v3`
+
+Build failed because it uses a deprecated version of `actions/upload-artifact: v3`
+
+在 .github/workflows/xxx.yaml 中…
+
+| 旧值                               | 新价值                             |
+| :--------------------------------- | :--------------------------------- |
+| `actions/cache@v3`                 | `actions/cache@v4`                 |
+| `actions/configure-pages@v3`       | `actions/configure-pages@v5`       |
+| `actions/deploy-pages@v2`          | `actions/deploy-pages@v4`          |
+| `actions/upload-pages-artifact@v2` | `actions/upload-pages-artifact@v3` |
+| `peaceiris/actions-hugo@v2`        | `peaceiris/actions-hugo@v3`        |

@@ -4,10 +4,10 @@ date: 2025-01-24T11:00:00+08:00
 draft: false
 categories: ["Note","java"]
 tags: ["Note","java","java"]
-summary: java
+summary: java教程
 ---
 
-# Java
+# 简介
 
 > 把大象装进冰箱需要几步？答：三步，把冰箱门打开，大象塞进去，关上冰箱门。
 >
@@ -31,7 +31,7 @@ spring,spring boot,spring cloud 这三个框架一起提供了一个强大的生
 - 提供工具和库，用于解决微服务系统的常见问题，如服务注册与发现、分布式配置、负载均衡、断路器、分布式消息等。
 - Spring Cloud 的模块需要依赖 Spring Boot 来运行，并继承 Spring 的核心特性。
 
-# Getting started
+Getting started
 
 ## Install IntelliJ IDEA
 
