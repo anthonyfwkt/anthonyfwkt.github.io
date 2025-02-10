@@ -11,7 +11,7 @@ c->java/python
 
 c: https://wangdoc.com/clang/intro
 
-# 简介
+# C
 
 https://www.ruanyifeng.com/blog/2006/03/programming_language_evaluations.html
 
@@ -1309,3 +1309,524 @@ struct fraction f1;
 f1.numerator = 22;
 f1.denominator = 7;
 ```
+
+除了逐一对属性赋值，也可以使用大括号，一次性对 struct 结构的所有属性赋值。
+
+```c
+struct car {
+  char* name;
+  float price;
+  int speed;
+};
+
+struct car saturn = {"Saturn SL/2", 16000.99, 175};
+```
+
+上面示例中，变量`saturn`是`struct car`类型，大括号里面同时对它的三个属性赋值。如果大括号里面的值的数量，少于属性的数量，那么缺失的属性自动初始化为`0`。
+
+注意，大括号里面的值的顺序，必须与 struct 类型声明时属性的顺序一致。否则，必须为每个值指定属性名。
+
+```c
+struct car saturn = {.speed=172, .name="Saturn SL/2"};
+```
+
+struct 的数据类型声明语句与变量的声明语句，可以合并为一个语句。
+
+```c
+struct book {
+  char title[500];
+  char author[100];
+  float value;
+} b1;
+```
+
+下一章介绍的`typedef`命令可以为 struct 结构指定一个别名，这样使用起来更简洁。
+
+```c
+typedef struct cell_phone {
+  int cell_no;
+  float minutes_of_charge;
+} phone;
+
+phone p = {5551234, 5};
+```
+
+
+
+struct 结构占用的存储空间，不是各个属性存储空间的总和，而是**最大内存占用属性的存储空间的倍数，其他属性会添加空位与之对齐**。这样可以提高读写效率。
+
+```c
+struct foo {
+  int a;
+  char* b;
+  char c;
+};
+printf("%d\n", sizeof(struct foo)); // 24
+```
+
+为什么浪费这么多空间进行内存对齐呢？这是为了加快读写速度，把内存占用划分成等长的区块，就可以快速在 Struct 结构体中定位到每个属性的起始地址。
+
+
+
+由于这个特性，在有必要的情况下，定义 Struct 结构体时，**可以采用存储空间递增的顺序，定义每个属性，这样就能节省一些空间。**
+
+```c
+struct foo {
+  char c;
+  int a;
+  char* b;
+};
+printf("%d\n", sizeof(struct foo)); // 16
+```
+
+上面示例中，占用空间最小的`char c`排在第一位，其次是`int a`，占用空间最大的`char* b`排在最后。整个`strct foo`的内存占用就从24字节下降到16字节。
+
+## struct 的复制
+
+struct 变量可以使用赋值运算符（`=`），复制给另一个变量，这时会生成一个全新的副本。系统会分配一块新的内存空间，大小与原来的变量相同，把每个属性都复制过去，即原样生成了一份数据。这一点跟数组的复制不一样，务必小心。
+
+```c
+struct cat { char name[30]; short age; } a, b;
+
+strcpy(a.name, "Hula");
+a.age = 3;
+
+b = a;
+b.name[0] = 'M';
+
+printf("%s\n", a.name); // Hula
+printf("%s\n", b.name); // Mula
+```
+
+上面示例中，变量`b`是变量`a`的副本，两个变量的值是各自独立的，修改掉`b.name`不影响`a.name`。
+
+
+
+## struct 指针
+
+如果将 struct 变量传入函数，函数内部得到的是一个原始值的副本。
+
+```c
+#include <stdio.h>
+
+struct turtle {
+  char* name;
+  char* species;
+  int age;
+};
+
+void happy(struct turtle t) {
+  t.age = t.age + 1;
+}
+
+int main() {
+  struct turtle myTurtle = {"MyTurtle", "sea turtle", 99};
+  happy(myTurtle);
+  printf("Age is %i\n", myTurtle.age); // 输出 99
+  return 0;
+}
+```
+
+通常情况下，开发者希望传入函数的是同一份数据，函数内部修改数据以后，会反映在函数外部。而且，传入的是同一份数据，也有利于提高程序性能。这时就需要将 struct 变量的指针传入函数，通过指针来修改 struct 属性，就可以影响到函数外部。
+
+struct 指针传入函数的写法如下。
+
+```c
+void happy(struct turtle* t) {
+}
+
+happy(&myTurtle);
+```
+
+上面代码中，`t`是 struct 结构的指针，调用函数时传入的是指针。struct 类型跟数组不一样，类型标识符本身并不是指针，所以传入时，指针必须写成`&myTurtle`。
+
+函数内部也必须使用`(*t).age`的写法，从指针拿到 struct 结构本身。
+
+```c
+void happy(struct turtle* t) {
+  (*t).age = (*t).age + 1;
+}
+```
+
+`(*t).age`这样的写法很麻烦。C 语言就引入了一个新的箭头运算符（`->`），可以从 struct 指针上直接获取属性，大大增强了代码的可读性。
+
+```c
+void happy(struct turtle* t) {
+  t->age = t->age + 1;
+}
+```
+
+总结一下，对于 struct 变量名，使用点运算符（`.`）获取属性；对于 struct 变量指针，使用箭头运算符（`->`）获取属性。以变量`myStruct`为例，假设`ptr`是它的指针，那么下面三种写法是同一回事。
+
+```c
+// ptr == &myStruct
+myStruct.prop == (*ptr).prop == ptr->prop
+```
+
+## struct 的嵌套
+
+struct 结构内部不仅可以引用其他结构，还可以自我引用，即结构内部引用当前结构。比如，链表结构的节点就可以写成下面这样。
+
+```c
+struct node {
+  int data;
+  struct node* next;
+};
+```
+
+上面示例中，`node`结构的`next`属性，就是指向另一个`node`实例的指针。下面，使用这个结构自定义一个数据链表。
+
+```c
+struct node {
+  int data;
+  struct node* next;
+};
+
+struct node* head;
+
+// 生成一个三个节点的列表 (11)->(22)->(33)
+head = malloc(sizeof(struct node));
+
+head->data = 11;
+head->next = malloc(sizeof(struct node));
+
+head->next->data = 22;
+head->next->next = malloc(sizeof(struct node));
+
+head->next->next->data = 33;
+head->next->next->next = NULL;
+
+// 遍历这个列表
+for (struct node *cur = head; cur != NULL; cur = cur->next) {
+  printf("%d\n", cur->data);
+}
+```
+
+上面示例是链表结构的最简单实现，通过`for`循环可以对其进行遍历。
+
+# typedef命令
+
+`typedef`命令用来为某个类型起别名。
+
+```c
+typedef type name;
+```
+
+上面代码中，`type`代表类型名，`name`代表别名。
+
+
+
+
+
+（1）更好的代码可读性。
+
+```
+typedef char* STRING;
+
+STRING name;
+```
+
+上面示例为字符指针起别名为`STRING`，以后使用`STRING`声明变量时，就可以轻易辨别该变量是字符串。
+
+
+
+
+
+
+
+(2)typedef 也可以与 struct 定义数据类型的命令写在一起。
+
+```c
+typedef struct animal {
+  char* name;
+  int leg_count, speed;
+} animal;
+```
+
+上面示例中，自定义数据类型时，同时使用`typedef`命令，为`struct animal`起了一个别名`animal`。
+
+这种情况下，C 语言允许省略 struct 命令后面的类型名。
+
+```c
+typedef struct {
+  char *name;
+  int leg_count, speed;
+} animal;
+```
+
+上面示例相当于为一个匿名的数据类型起了别名`animal`。
+
+（3）typedef 方便以后为变量改类型。
+
+```c
+typedef float app_float;
+
+app_float f1, f2, f3;
+```
+
+上面示例中，变量`f1`、`f2`、`f3`的类型都是`float`。如果以后需要为它们改类型，只需要修改`typedef`语句即可。
+
+```c
+typedef long double app_float;
+```
+
+上面命令将变量`f1`、`f2`、`f3`的类型都改为`long double`。
+
+（4）可移植性
+
+```c
+int32_t i = 100000;
+```
+
+上面示例将变量`i`声明成`int32_t`类型，保证它在不同计算机上都是32位宽度，移植代码时就不会出错。
+
+这一类的类型别名都是用 typedef 定义的。下面是类似的例子。
+
+```c
+typedef long int ptrdiff_t;
+typedef unsigned long int size_t;
+typedef int wchar_t;
+```
+
+这些整数类型别名都放在头文件`stdint.h`，不同架构的计算机只需修改这个头文件即可，而无需修改代码。
+
+因此，`typedef`有助于提高代码的可移植性，使其能适配不同架构的计算机。
+
+（5）简化类型声明
+
+# Union 结构
+
+> 声明->要用哪个属性先赋值
+
+C 语言提供了 Union 结构，用来自定义可以灵活变更的数据结构。它内部包含各种属性，但是所有属性共用一块内存，导致这些属性都是对同一个二进制数据的解读，其中往往只有一个属性的解读是有意义的。并且，后面写入的属性会覆盖前面的属性，这意味着同一块内存，可以先供某一个属性使用，然后再供另一个属性使用。这样做的最大好处是节省内存空间。
+
+```c
+union quantity {
+  short count;
+  float weight;
+  float volume;
+};
+```
+
+# Enum 类型
+
+如果一种数据类型的取值只有少数几种可能，并且每种取值都有自己的含义，为了提高代码的可读性，可以将它们定义为 Enum 类型，中文名为枚举。
+
+```c
+enum colors {RED, GREEN, BLUE};
+
+printf("%d\n", RED); // 0
+printf("%d\n", GREEN);  // 1
+printf("%d\n", BLUE);  // 2
+```
+
+Enum 的作用域与变量相同。如果是在顶层声明，那么在整个文件内都有效；如果是在代码块内部声明，则只对该代码块有效。如果与使用`int`声明的常量相比，Enum 的好处是更清晰地表示代码意图。
+
+# 预处理器
+
+C 语言编译器在编译程序之前，会先使用预处理器（preprocessor）处理代码。
+
+预处理器首先会清理代码，进行删除注释、多行语句合成一个逻辑行等工作。然后，执行`#`开头的预处理指令。本章介绍 C 语言的预处理指令。
+
+预处理指令可以出现在程序的任何地方，但是习惯上，往往放在代码的开头部分。
+
+每个预处理指令都以`#`开头，放在一行的行首，指令前面可以有空白字符（比如空格或制表符）。`#`和指令的其余部分之间也可以有空格，但是为了兼容老的编译器，一般不留空格。
+
+所有预处理指令都是一行的，除非在行尾使用反斜杠，将其折行。指令结尾处不需要分号。
+
+## #define
+
+`#define`是最常见的预处理指令，用来将指定的词替换成另一个词。
+
+## 带参数的宏
+
+宏的强大之处在于，它的名称后面可以使用括号，指定接受一个或多个参数。
+
+```c
+#define SQUARE(X) X*X
+```
+
+上面示例中，宏`SQUARE`可以接受一个参数`X`，替换成`X*X`。
+
+```c
+// 替换成 z = 2*2;
+z = SQUARE(2);
+```
+
+
+
+
+
+那么，什么时候使用带参数的宏，什么时候使用函数呢？
+
+一般来说，应该首先使用函数，它的功能更强、更容易理解。宏有时候会产生意想不到的替换结果，而且往往只能写成一行，除非对换行符进行转义，但是可读性就变得很差。
+
+宏的优点是相对简单，本质上是字符串替换，不涉及数据类型，不像函数必须定义数据类型。而且，宏将每一处都替换成实际的代码，省掉了函数调用的开销，所以性能会好一些。另外，以前的代码大量使用宏，尤其是简单的数学运算，为了读懂前人的代码，需要对它有所了解。
+
+
+
+**#运算符，##运算符**
+
+由于宏不涉及数据类型，所以替换以后可能为各种类型的值。如果希望替换后的值为字符串，可以在替换文本的参数前面加上`#`。
+
+
+
+`##`运算符的一个主要用途是批量生成变量名和标识符。
+
+
+
+**不定参数的宏**
+
+宏的参数还可以是不定数量的（即不确定有多少个参数），`...`表示剩余的参数。
+
+```
+#define X(a, b, ...) (10*(a) + 20*(b)), __VA_ARGS__
+```
+
+上面示例中，`X(a, b, ...)`表示`X()`至少有两个参数，多余的参数使用`...`表示。在替换文本中，`__VA_ARGS__`代表多余的参数（每个参数之间使用逗号分隔）。下面是用法示例。
+
+
+
+**`#undef`**
+
+`#undef`指令用来取消已经使用`#define`定义的宏。
+
+## #include
+
+`#include`指令用于编译时将其他源码文件，加载进入当前文件。它有两种形式。
+
+```
+// 形式一
+#include <foo.h> // 加载系统提供的文件
+
+// 形式二
+#include "foo.h" // 加载用户提供的文件
+```
+
+## #if...#endif
+
+`#if...#endif`指令用于预处理器的条件判断，满足条件时，内部的行会被编译，否则就被编译器忽略。
+
+```
+#if 0
+  const double pi = 3.1415; // 不会执行
+```
+
+## \#ifdef...#endif
+
+有时源码文件可能会重复加载某个库，为了避免这种情况，可以在库文件里使用`#define`定义一个空的宏。通过这个宏，判断库文件是否被加载了。
+
+```c
+#define EXTRA_HAPPY
+```
+
+上面示例中，`EXTRA_HAPPY`就是一个空的宏。
+
+然后，源码文件使用`#ifdef...#endif`检查这个宏是否定义过。
+
+```c
+#ifdef EXTRA_HAPPY
+  printf("I'm extra happy!\n");
+#endif
+```
+
+## defined 运算符
+
+这个运算符的一个应用，就是对于不同架构的系统，加载不同的头文件。
+
+
+
+## 预定义宏
+
+C 语言提供一些预定义的宏，可以直接使用。
+
+- `__DATE__`：编译日期，格式为“Mmm dd yyyy”的字符串（比如 Nov 23 2021）。
+- `__TIME__`：编译时间，格式为“hh:mm:ss”。
+- `__FILE__`：当前文件名。
+- `__LINE__`：当前行号。
+- `__func__`：当前正在执行的函数名。该预定义宏必须在函数作用域使用。
+- `__STDC__`：如果被设为1，表示当前编译器遵循 C 标准。
+- `__STDC_HOSTED__`：如果被设为1，表示当前编译器可以提供完整的标准库；否则被设为0（嵌入式系统的标准库常常是不完整的）。
+- `__STDC_VERSION__`：编译所使用的 C 语言版本，是一个格式为`yyyymmL`的长整数，C99 版本为“199901L”，C11 版本为“201112L”，C17 版本为“201710L”。
+
+```c
+#include <stdio.h>
+
+int main(void) {
+  printf("This function: %s\n", __func__);
+  printf("This file: %s\n", __FILE__);
+  printf("This line: %d\n", __LINE__);
+  printf("Compiled on: %s %s\n", __DATE__, __TIME__);
+  printf("C Version: %ld\n", __STDC_VERSION__);
+}
+
+/* 输出如下
+
+This function: main
+This file: test.c
+This line: 7
+Compiled on: Mar 29 2021 19:19:37
+C Version: 201710
+
+*/
+```
+
+## #error
+
+`#error`指令用于让预处理器抛出一个错误，终止编译。
+
+```c
+#if __STDC_VERSION__ != 201112L
+  #error Not C11
+#endif
+```
+
+上面示例指定，如果编译器不使用 C11 标准，就中止编译。GCC 编译器会像下面这样报错。
+
+```bash
+$ gcc -std=c99 newish.c
+newish.c:14:2: error: #error Not C11
+```
+
+# I/O函数
+
+C 语言提供了一些函数，用于与外部设备通信，称为输入输出函数，简称 I/O 函数。输入（import）指的是获取外部数据，输出（export）指的是向外部传递数据。
+
+## 缓存和字节流
+
+> 打开一个文件->在内存里为这个文件设置缓存区->写入数据到文件,先放在缓存->缓存满了,一次性写入磁盘,清空缓存->...
+
+严格地说，输入输出函数并不是直接与外部设备通信，而是通过缓存（buffer）进行间接通信。这个小节介绍缓存是什么。
+
+
+
+C 语言的输入输出函数，凡是涉及读写文件，都是属于字节流操作。输入函数从文件获取数据，操作的是输入流；输出函数向文件写入数据，操作的是输出流。
+
+## printf()
+
+`printf()`是最常用的输出函数，用于屏幕输出
+
+## scanf()
+
+`scanf()`函数用于读取用户的键盘输入。程序运行到这个语句时，会停下来，等待用户从键盘输入。用户输入数据、按下回车键后，`scanf()`就会处理用户的输入，将其存入变量。
+
+
+
+`scanf()`常用的占位符如下，与`printf()`的占位符基本一致。
+
+- `%c`：字符。
+- `%d`：整数。
+- `%f`：`float`类型浮点数。
+- `%lf`：`double`类型浮点数。
+- `%Lf`：`long double`类型浮点数。
+- `%s`：字符串。
+- `%[]`：在方括号中指定一组匹配的字符（比如`%[0-9]`），遇到不在集合之中的字符，匹配将会停止。
+
+## sscanf()
+
+`sscanf()`函数与`scanf()`很类似，不同之处是`sscanf()`从字符串里面，而不是从用户输入获取数据。它的原型定义在头文件`stdio.h`里面。
+
+```c
+int sscanf(const char* s, const char* format, ...);
+```
+
