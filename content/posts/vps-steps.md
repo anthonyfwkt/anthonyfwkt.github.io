@@ -7,11 +7,13 @@ tags: ["VPS"]
 summary: "VPS教程"
 ---
 
-1. 系统选择
+1. 购买域名,绑定域名和`VPS IP`[`ping`通域名,确认ip关联成功]
+
+2. VPS系统选择
 
    建议首选 Debian ，稳！
 
-2. **安装常用软件**
+3. **安装常用软件**
 
    ```bash
    apt update
@@ -21,7 +23,7 @@ summary: "VPS教程"
 
    
 
-3. x-ui脚本
+4. x-ui脚本
 
    ```bash
    bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/x-ui/master/install.sh) 0.3.4.4
@@ -50,6 +52,10 @@ summary: "VPS教程"
   /root/cert/fullchain.cer
 
   /root/cert/域名.key
+
+- [`ping`通域名,确认ip关联成功]
+
+- **VPS更改x-ui重置登录密码为admin,使用https域名访问x-ui面板,修改登录密码**
 
 4. 配置warp
 
