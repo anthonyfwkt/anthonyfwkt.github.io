@@ -31,9 +31,20 @@ spring,spring boot,spring cloud 这三个框架一起提供了一个强大的生
 - 提供工具和库，用于解决微服务系统的常见问题，如服务注册与发现、分布式配置、负载均衡、断路器、分布式消息等。
 - Spring Cloud 的模块需要依赖 Spring Boot 来运行，并继承 Spring 的核心特性。
 
-Getting started
+# Getting started
+
+## Install eclipse
+
+https://www.eclipse.org/downloads/packages/
+
+https://www.eclipse.org/downloads/
 
 ## Install IntelliJ IDEA
+
+> IDEA IntelliJ IDEA Ultimate  2024 1.x 版本  ideaIU-2024.1.7
+> https://www.jetbrains.com/idea/download/other.html
+>
+> 失效就卸载重装下
 
 注册码激活(推荐): https://ipfs.io/ipfs/bafybeih65no5dklpqfe346wyeiak6wzemv5d7z2ya7nssdgwdz4xrmdu6i/
 
@@ -119,4 +130,6 @@ Java 11 对比 Java 8 的优点在于：
   ```bash
   %JAVA_HOME%\bin
   ```
+
+# 快速入门
 
