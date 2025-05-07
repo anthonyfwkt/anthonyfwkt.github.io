@@ -451,6 +451,9 @@ https://www.youtube.com/watch?v=yFNE_KpG5FU
 ## stock
 
 > 国外媒体看空缅a要减仓 ,大跌后,消息落地要敢抄底      eg 关税
+> 降准降息,利好地产,科技
+>
+> 
 >
 > 多做 T
 >
@@ -476,6 +479,8 @@ https://www.youtube.com/watch?v=yFNE_KpG5FU
 > 
 >
 > 地天一般接地板或退市/st
+>
+> 降准降息,利好地产,科技
 
 
 
