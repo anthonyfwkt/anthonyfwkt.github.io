@@ -460,6 +460,8 @@ https://www.youtube.com/watch?v=yFNE_KpG5FU
 
 正常情况下,场内买的是晚上美股的预期,缅a同样是买预期
 
+低位买格力电器,长拿
+
 
 
 祖训(更新版):
