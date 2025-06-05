@@ -29,10 +29,6 @@ summary: note ,economy ,stock
 >
 > 规避汽车烂尾风险
 >
-> 关注best wishes go (@gggrwewggr) ,学习验证
->
-> 跟糊涂哥验证,学习
->
 > 
 >
 > **换手看趋势变化(Q&A):** 
