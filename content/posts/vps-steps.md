@@ -8,6 +8,9 @@ summary: "VPS教程"
 ---
 
 > 最新VPS促销优惠活动: https://p3terx.com/archives/cheap-vps-racknerd.html
+>
+> - [ ] 更换vps邮箱账户
+> - [ ] 更换vps
 
 1. 购买域名,绑定域名和`VPS IP`[`ping`通域名,确认ip关联成功]
 
