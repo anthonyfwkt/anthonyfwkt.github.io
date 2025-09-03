@@ -11,6 +11,8 @@ summary: "VPS教程"
 >
 > - [ ] 更换vps邮箱账户
 > - [ ] 更换vps
+> - [ ] 学习了解cloudflare
+> - [ ] 查找bbr最佳实践版本
 
 1. 购买域名,绑定域名和`VPS IP`[`ping`通域名,确认ip关联成功]
 
@@ -28,7 +30,13 @@ summary: "VPS教程"
 
    
 
-4. x-ui脚本
+4. 获取 Cloudflare API Token **(Cloudflare  待研究)**
+
+   - 登录 Cloudflare 仪表盘 > 我的资料 > API 令牌 > 创建令牌。
+   - 选择“编辑区域 DNS”模板，权限：Zone: DNS: Edit；区域：你的域名。
+   - 生成 Token（格式：Bearer xxxxxxxxxxxxxxxxxx），记录下来。
+
+5. x-ui脚本
 
    ```bash
    bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/x-ui/master/install.sh) 0.3.4.4
@@ -44,7 +52,13 @@ summary: "VPS教程"
 
 - 输入x-ui
 
-- 输入15 -> 安装bbr
+- ~~输入15 -> 安装bbr~~  
+
+  安装bbr加速 (**查找其他最佳实践脚本**)
+
+  ```bash
+  wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh" && chmod +x tcp.sh && ./tcp.sh
+  ```
 
 - 输入16> 为域名申请SSL证书  ->  SSL证书安装目录为/root/cert目录
 
