@@ -49,7 +49,9 @@ summary: "VPS教程"
 
 - 输入x-ui
 
-- 输入15 -> 安装bbr
+- 输入15 -> 安装bbr  
+
+  在TCP网络通信中，**BBR（Bottleneck Bandwidth and Round-trip propagation time）** 是一种由Google开发的拥塞控制算法，旨在优化网络传输性能。它的主要作用是提高网络的吞吐量、降低延迟，并更高效地利用网络带宽。
 
 - 输入16> 为域名申请SSL证书  ->  SSL证书安装目录为/root/cert目录
 
@@ -67,7 +69,11 @@ summary: "VPS教程"
 
 - **VPS更改x-ui重置登录密码为admin,使用https域名访问x-ui面板,修改登录密码**
 
+  
+
 6. 配置warp
+
+   Warp 最常见的指代是 Cloudflare 公司推出的 Cloudflare WARP 服务，这是一种基于 WireGuard 协议的 VPN-like 工具，旨在提升互联网连接的安全性、速度和隐私保护。
 
    https://github.com/P3TERX/warp.sh
 
